@@ -1,0 +1,79 @@
+{
+  "private": true,
+  "name": "reactive-canvas",
+  "version": "0.0.1",
+  "description": "A demo application with React, Redux and D3",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiagohmoreira/ReactiveCanvas.git"
+  },
+  "keywords": [
+    "React",
+    "Redux",
+    "D3",
+    "Jest"
+  ],
+  "author": "Thiago Hummel Moreira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thiagohmoreira/ReactiveCanvas/issues"
+  },
+  "homepage": "https://github.com/thiagohmoreira/ReactiveCanvas#readme",
+  "jest": {
+    "unmockedModulePathPatterns": [ "./node_modules" ],
+    "testPathDirs": [ "./test" ],
+    "testRegex": ".*.js$"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "react": "React",
+    "d3": "global:d3"
+  },
+  "devDependencies": {
+    "babel-jest": "^13.2.2",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-2": "^6.11.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.13.0",
+    "browserify-shim": "^3.8.12",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-inject": "^4.1.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sequence": "^0.4.5",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.4",
+    "gulp-util": "^3.0.7",
+    "jest-cli": "^13.2.3",
+    "jshint": "^2.9.2",
+    "react-addons-test-utils": "^15.2.1",
+    "require-dir": "^0.3.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "d3": "^4.1.1",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.0",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0"
+  }
+}

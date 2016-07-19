@@ -1,0 +1,55 @@
+{
+  "root": {
+    "test": "./test",
+    "src": "./src",
+    "dest": "./build",
+
+    "outputFileName": "reactive-canvas"
+  },
+
+  "tasks": {
+    "css": {
+      "src": "styles",
+      "dest": "css",
+      "entry": "main.sass",
+      "autoprefixer": {
+        "browsers": ["last 3 version"]
+      },
+      "sass": {
+        "includePaths": [
+          "./node_modules/bootstrap/dist/css"
+        ]
+      },
+      "extensions": ["sass", "scss", "css"]
+    },
+
+    "js": {
+      "src": "js",
+      "dest": "js",
+      "extensions": ["js", "json"],
+
+      "browserify": {
+          "debug": true
+      },
+
+      "entries": {
+        "app": ["./index.js"]
+      }
+    },
+
+    "html": {
+      "src": "./",
+      "dest": "./",
+      "entry": "index.html",
+      "extensions": ["html", "json"],
+      "injectExtensions": ["css", "js"]
+    },
+
+    "browserSync": {
+      "server": {
+        "baseDir": "./build",
+        "logFileChanges": false
+      }
+    }
+  }
+}
