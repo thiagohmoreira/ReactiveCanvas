@@ -2,10 +2,10 @@ import browserSync from 'browser-sync';
 import gulp from 'gulp';
 import config from '../config';
 
-var browserSyncTask = () => {
+let task = () => {
     browserSync.init(config.tasks.browserSync);
 };
 
-gulp.task('browserSync', browserSyncTask);
+gulp.task('browser-sync', task);
 
-export default browserSyncTask;
+export default task;

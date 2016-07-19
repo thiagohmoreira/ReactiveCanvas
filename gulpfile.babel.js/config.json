@@ -11,7 +11,7 @@
     "css": {
       "src": "styles",
       "dest": "css",
-      "entry": "main.sass",
+      "entry": "index.sass",
       "autoprefixer": {
         "browsers": ["last 3 version"]
       },

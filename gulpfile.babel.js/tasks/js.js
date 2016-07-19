@@ -26,7 +26,7 @@ var jsTask = () => {
             { entries: paths.entries },
             config.tasks.js.browserify
         ))
-        .transform(babelify)
+        //.transform(babelify)
         .bundle()
 
         .on('log', gutil.log)

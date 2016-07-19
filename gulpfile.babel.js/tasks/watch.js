@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import path from 'path';
 import config from '../config';
 
-var watchTask = () => {
+let task = () => {
   var watchableTasks = ['html', 'css', 'js'];
 
   watchableTasks.forEach(function(taskName) {
@@ -14,6 +14,6 @@ var watchTask = () => {
   })
 };
 
-gulp.task('watch', ['browserSync'], watchTask);
+gulp.task('watch', ['browser-sync'], task);
 
-export default watchTask;
+export default task;

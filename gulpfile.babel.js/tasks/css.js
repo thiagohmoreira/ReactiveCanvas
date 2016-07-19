@@ -1,11 +1,12 @@
 import gulp from 'gulp';
-import browserSync from 'browser-sync';
 import sass from 'gulp-sass';
 import inject from 'gulp-inject';
 import sourcemaps from 'gulp-sourcemaps';
 import autoprefixer from 'gulp-autoprefixer';
-import path from 'path';
 import cssnano from 'gulp-cssnano';
+import rename from 'gulp-rename';
+import path from 'path';
+import browserSync from 'browser-sync';
 import handleErrors from '../lib/handleErrors';
 import config from '../config';
 
@@ -38,6 +39,7 @@ var cssTask = () => {
     .on('error', handleErrors)
     .pipe(autoprefixer(config.tasks.css.autoprefixer))
     //.pipe(cssnano({autoprefixer: false}))
+    .pipe(rename(config.root.outputFileName + '.css'))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream());

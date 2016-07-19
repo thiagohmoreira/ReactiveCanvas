@@ -24,18 +24,22 @@
   },
   "homepage": "https://github.com/thiagohmoreira/ReactiveCanvas#readme",
   "jest": {
-    "unmockedModulePathPatterns": [ "./node_modules" ],
-    "testPathDirs": [ "./test" ],
+    "unmockedModulePathPatterns": [
+      "./node_modules"
+    ],
+    "testPathDirs": [
+      "./test"
+    ],
     "testRegex": ".*.js$"
   },
   "browserify": {
     "transform": [
-      "browserify-shim"
+      "browserify-shim",
+      "babelify"
     ]
   },
   "browserify-shim": {
-    "react": "React",
-    "d3": "global:d3"
+    "d3": "d3"
   },
   "devDependencies": {
     "babel-jest": "^13.2.2",
@@ -46,6 +50,7 @@
     "babelify": "^7.3.0",
     "browser-sync": "^2.13.0",
     "browserify-shim": "^3.8.12",
+    "deep-freeze": "0.0.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-babel": "^6.1.2",
@@ -54,6 +59,7 @@
     "gulp-inject": "^4.1.0",
     "gulp-jshint": "^2.0.1",
     "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-sequence": "^0.4.5",
     "gulp-sourcemaps": "^1.6.0",
@@ -71,9 +77,12 @@
     "d3": "^4.1.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-faux-dom": "^2.7.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.0",
     "redux": "^3.5.2",
+    "redux-storage": "^4.0.1",
+    "redux-storage-engine-localstorage": "^1.1.1",
     "redux-thunk": "^2.1.0"
   }
 }

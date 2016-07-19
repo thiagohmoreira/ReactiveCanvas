@@ -1,10 +1,10 @@
 import gulp from 'gulp';
 import gulpSequence from 'gulp-sequence';
 
-var defaultTask = (cb) => {
-  gulpSequence('clean', ['css', 'lint', 'js'], 'html', cb);
+var buildTask = (cb) => {
+  gulpSequence(['css', 'lint', 'js'], 'html', cb);
 }
 
-gulp.task('build', defaultTask);
+gulp.task('build', buildTask);
 
-export default defaultTask;
+export default buildTask;
