@@ -7,7 +7,7 @@ import CircleList from '../component/circle-list';
 
 export default ({actions, circles, viewport}) => (
     <Layout>
-      <Canvas circles={circles}  />
+      <Canvas circles={circles} viewport={viewport} />
       <CanvasControl>
         <CircleList circles={circles} actions={actions} viewport={viewport} />
       </CanvasControl>

@@ -3,13 +3,13 @@ jest.unmock('../../src/js/reducer/canvas');
  //This is to help ensuring reducers are pure functions
 import deepFreeze from 'deep-freeze';
 
-import canvasReducer, { addCircleAction, updateCircleAction, deleteCircleAction } from '../../src/js/reducer/canvas';
+import canvasReducer, { initialState, addCircleAction, updateCircleAction, deleteCircleAction } from '../../src/js/reducer/canvas';
 
 describe('The canvas reducer', function() {
-  it('should return a clean initial state', () => {
+  it('return a clean initial state', () => {
     const stateBefore = undefined;
     const action = { type: 'UNKNOWN' };
-    const stateAfer = [];
+    const stateAfer = initialState;
 
     deepFreeze(action);
 
@@ -18,8 +18,8 @@ describe('The canvas reducer', function() {
     ).toEqual(stateAfer);
   });
 
-  it('should do nothing with an UNKNOWN action', () => {
-    const stateBefore = { foo: 'bar' };
+  it('do nothing with an UNKNOWN action', () => {
+    const stateBefore = initialState;
     const action = { type: 'UNKNOWN' };
     const stateAfer = stateBefore;
 
@@ -31,8 +31,8 @@ describe('The canvas reducer', function() {
     ).toBe(stateAfer);
   });
 
-  it('should add circles', () => {
-    const stateBefore = [];
+  it('adds a circle', () => {
+    const stateBefore = initialState;
     const action = addCircleAction();
     const stateAfer = [{ x: 0, y: 0, r: 250}];
 
@@ -44,7 +44,7 @@ describe('The canvas reducer', function() {
     ).toEqual(stateAfer);
   });
 
-  it('should update circles', () => {
+  it('updates a circle', () => {
     const stateBefore = [
       { x: 0, y: 0, r: 15},
       { x: 10, y: 10, r: 35}
@@ -63,7 +63,7 @@ describe('The canvas reducer', function() {
     ).toEqual(stateAfer);
   });
 
-  it('should remove circles', () => {
+  it('removes a circle', () => {
     const stateBefore = [
       { x: 0, y: 0, r: 15},
       { x: 10, y: 10, r: 35}

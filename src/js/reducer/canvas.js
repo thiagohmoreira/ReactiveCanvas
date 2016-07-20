@@ -1,10 +1,10 @@
 import { LOAD } from 'redux-storage';
 
-const ADD_CIRCLE = 'CANVAS/ADD_CIRCLE';
-const UPDATE_CIRCLE = 'CANVAS/UPDATE_CIRCLE';
-const DELETE_CIRCLE = 'CANVAS/DELETE_CIRCLE';
+export const ADD_CIRCLE = 'CANVAS/ADD_CIRCLE';
+export const UPDATE_CIRCLE = 'CANVAS/UPDATE_CIRCLE';
+export const DELETE_CIRCLE = 'CANVAS/DELETE_CIRCLE';
 
-const initialState = [];
+export const initialState = [];
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {

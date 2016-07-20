@@ -22,7 +22,7 @@
 }
 
 .circle-list {
-  margin: 10px 10px 10px 0;
+  margin: 10px;
 }
 
 .circle-list > div {
@@ -41,6 +41,11 @@
 }
 
 .circle-list .read-only {
+  width: 25px !important;
   text-align: center;
   display: inline-block;
+}
+
+.circle-list > div.first {
+  border-bottom: 1px solid #000;
 }

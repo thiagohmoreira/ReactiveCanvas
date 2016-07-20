@@ -2,12 +2,15 @@ import React from 'react'
 
 export default ({ actions, circles, viewport }) => (
   <div className='circle-list'>
-    <div>
-        <label>#</label>
+    <div className='first'>
+        <label className='read-only'>#</label>
         <label>X</label>
         <label>Y</label>
         <label>Radius</label>
-        <button className='btn btn-xs' onClick={actions.addCircle()}>+</button>
+
+        {circles.length >= 5 ? null :
+          <button className='btn btn-xs' onClick={actions.addCircle()}>+</button>
+        }
     </div>
     {circles.map(({ x, y, r }, i) => (
       <div key={i}>

@@ -5,12 +5,12 @@ import ReactFauxDOM from 'react-faux-dom';
 //import d3 from 'd3'; - Why this don't work?
 const d3 = window.d3;
 
-export default ({circles}) => {
+export default ({circles, viewport}) => {
   const node = ReactFauxDOM.createElement('svg');
 
   const svg = d3.select(node)
-    .attr('width', window.innerWidth)
-    .attr('height', window.innerHeight);
+    .attr('width', viewport.width)
+    .attr('height', viewport.height);
 
   circles.map((circle, i) => {
     svg.append('circle')
