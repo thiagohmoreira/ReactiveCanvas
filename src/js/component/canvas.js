@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactFauxDOM from 'react-faux-dom';
 
 //@TODO: Find a less hacky way to import D3

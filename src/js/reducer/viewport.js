@@ -2,7 +2,7 @@ import { LOAD } from 'redux-storage';
 
 export const UPDATE_SIZE = 'VIEWPORT/UPDATE_SIZE';
 
-export const initialState = { width: window.innerWidth, height: window.innerHeight };
+export const initialState = { width: 0, height: 0 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
