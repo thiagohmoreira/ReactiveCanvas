@@ -33,7 +33,7 @@ describe('The canvas reducer', function() {
 
   it('adds a circle', () => {
     const stateBefore = initialState;
-    const action = addCircleAction();
+    const action = addCircleAction({ x: 0, y: 0, r: 250});
     const stateAfer = [{ x: 0, y: 0, r: 250}];
 
     deepFreeze(stateBefore);

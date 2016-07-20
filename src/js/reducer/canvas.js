@@ -1,4 +1,5 @@
 import { LOAD } from 'redux-storage';
+import { canAddCircle, getMaxNewRadius, isValid } from '../api/canvas';
 
 export const ADD_CIRCLE = 'CANVAS/ADD_CIRCLE';
 export const UPDATE_CIRCLE = 'CANVAS/UPDATE_CIRCLE';
@@ -12,7 +13,7 @@ export default function reducer(state = initialState, action) {
       return [...action.payload.canvas];
 
     case ADD_CIRCLE:
-      return state.concat([{ x: 0, y: 0, r: 250 }]);
+      return state.concat([action.circle]);
 
     case UPDATE_CIRCLE:
       return state.map((item, i) => action.index === i ?
@@ -28,11 +29,41 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-export const addCircleAction = () => ({ type: ADD_CIRCLE });
-export const addCircle = () => dispatch => () => dispatch(addCircleAction());
+export const addCircleAction = (circle) => ({ type: ADD_CIRCLE, circle });
+export const addCircle = (circle) => (dispatch, getState) => () => {
+  const { canvas, viewport } = getState();
+
+  try {
+    if (!canAddCircle(canvas))
+      throw 'Max number of circles reached.';
+
+    const validCircle = isValid(circle, canvas, viewport.width);
+    if (validCircle !== true)
+      throw validCircle;
+
+    dispatch(addCircleAction(circle));
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const updateCircleAction = (index, field, val) => ({ type: UPDATE_CIRCLE, index, field, val });
-export const updateCircle = (index, field) => dispatch => event => dispatch(updateCircleAction(index, field, event.target.value));
+export const updateCircle = (index, field) => (dispatch, getState) => event => {
+  const { canvas, viewport } = getState();
+  const { value } = event.target;
+
+  try {
+    if (field == 'r') {
+      const validCircle = isValid(canvas[index], canvas, viewport.width);
+      if (validCircle !== true)
+        throw validCircle;
+    }
+
+    dispatch(updateCircleAction(index, field, value));
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const deleteCircleAction = index => ({ type: DELETE_CIRCLE, index });
 export const deleteCircle = index => dispatch => () => dispatch(deleteCircleAction(index));

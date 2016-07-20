@@ -24,8 +24,8 @@ class App extends React.Component {
 
   componentDidMount() {
     //Wait a while for the redux store to startup
-    setTimeout(() => this.handleResize(), 250);
-    window.addEventListener('resize', this.handleResize);
+    setTimeout(() => this.handleResize(), 500);
+    window.addEventListener('resize', () => this.handleResize());
   };
 
   componentWillUnmount() {
