@@ -1,10 +1,11 @@
 .canvas-control {
   background-color: #fff;
-  border: 1px solid #000;
+  border: 1px solid #4c6c88;
   position: absolute;
   font-size: 12px;
   top: 10px;
   left: 10px;
+  border-radius: 5px;
 }
 
 @media print {
@@ -14,7 +15,8 @@
 }
 
 .canvas-control h3 {
-  background-color: #ccc;
+  color: #fff;
+  background-color: #4c6c88;
   margin: 0;
   padding: 5px 15px;
   font-size: 16px;

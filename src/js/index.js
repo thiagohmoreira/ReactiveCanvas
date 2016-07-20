@@ -9,7 +9,7 @@ import App from './container/app-container';
 
 render(
   <Provider store={store}>
-    <App />
+    <App store={store} />
   </Provider>,
   document.getElementById('root')
 );

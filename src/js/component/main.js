@@ -9,7 +9,7 @@ export default ({actions, circles, viewport}) => (
     <Layout>
       <Canvas circles={circles} viewport={viewport} />
       <CanvasControl>
-        <CircleList circles={circles} actions={actions} viewport={viewport} />
+        <CircleList circles={circles} viewport={viewport} actions={actions} />
       </CanvasControl>
     </Layout>
 );

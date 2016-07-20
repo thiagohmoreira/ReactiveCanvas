@@ -8,18 +8,28 @@ import viewportReducer from '../reducer/viewport';
 
 import Main from '../component/Main';
 
-
 class App extends React.Component {
   handleResize() {
-    //console.log(this.props, this.props.dispatch);
-    const { dispatch } = this.props;
-    const actions = bindActionCreators({ ...ViewportActions }, dispatch);
-    actions.updateSize(window.innerWidth, window.innerHeight);
+    var w = window,
+        d = document,
+        documentElement = d.documentElement,
+        body = d.getElementsByTagName('body')[0],
+        width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
+        height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
+
+    this.props.store.dispatch(
+      ViewportActions.updateSizeAction(width, height)
+    );
   };
 
   componentDidMount() {
-    this.handleResize();
-    window.addEventListener('resize', () => this.handleResize() );
+    //Wait a while for the redux store to startup
+    setTimeout(() => this.handleResize(), 250);
+    window.addEventListener('resize', this.handleResize);
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
   };
 
   render() {
@@ -32,7 +42,7 @@ class App extends React.Component {
         actions={actions}
         viewport={viewport} />
     );
-  }
+  };
 }
 
 function mapStateToProps(state) {
