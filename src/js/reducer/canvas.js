@@ -1,39 +1,31 @@
 import { LOAD } from 'redux-storage';
-import { ADD_CIRCLE, DEL_CIRCLE } from '../actions'
 
-/*
- * action creators
- */
-export function addCircle(circle) {
-  return { type: ADD_CIRCLE, circle };
-};
+const ADD_CIRCLE = 'CANVAS/ADD_CIRCLE';
+const UPDATE_CIRCLE = 'CANVAS/UPDATE_CIRCLE';
+const DELETE_CIRCLE = 'CANVAS/DELETE_CIRCLE';
 
-export function delCircle(index) {
-  return { type: DEL_CIRCLE, index };
-};
+const initialState = [];
 
-/*
- * reducer function
- */
-export default function(state = [], action) {
-  switch(action.type) {
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
     case LOAD:
-      return [
-        ...action.payload.canvasReducer
-      ];
-
+      return [...action.payload.canvas];
     case ADD_CIRCLE:
-      return [
-        ...state,
-        action.circle
-      ];
-
-    case DEL_CIRCLE:
-      return [
-        ...state.slice(0, action.index),
-        ...state.slice(action.index + 1)
-      ];
+      return state.concat([{ x: 0, y: 1, r: 10 }]);
+    case UPDATE_CIRCLE:
+      return state.map((item, i) => action.index === i ?
+        Object.assign({}, item, { [action.field]: +action.val }) :
+        item
+      );
+    case DELETE_CIRCLE:
+      return state.filter((_, i) => i !== +action.index);
     default:
       return state;
   }
 }
+
+export const addCircle = () => dispatch => () => dispatch({ type: ADD_CIRCLE });
+export const deleteCircle = index => dispatch => () => dispatch({ type: DELETE_CIRCLE, index });
+export const updateCircle = (index, field) => dispatch => event => dispatch(
+  { type: UPDATE_CIRCLE, index, field, val: event.target.value }
+);

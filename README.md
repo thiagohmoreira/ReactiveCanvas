@@ -1,6 +1,6 @@
 # Reactive Canvas
 
-Is a demo application of React, Redux and D3 integration.
+A demo application of React, Redux and D3.
 
 ### Requirements
 
