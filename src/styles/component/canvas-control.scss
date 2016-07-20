@@ -1,6 +1,46 @@
 .canvas-control {
+  background-color: #fff;
   border: 1px solid #000;
   position: absolute;
+  font-size: 12px;
   top: 10px;
   left: 10px;
+}
+
+@media print {
+  .canvas-control {
+    display: none;
+  }
+}
+
+.canvas-control h3 {
+  background-color: #ccc;
+  margin: 0;
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.circle-list {
+  margin: 10px 10px 10px 0;
+}
+
+.circle-list > div {
+  margin-bottom: 3px;
+}
+
+.circle-list label {
+  text-align: center;
+}
+
+.circle-list input,
+.circle-list label,
+.circle-list .read-only {
+  width: 50px;
+  margin-right: 5px;
+}
+
+.circle-list .read-only {
+  text-align: center;
+  display: inline-block;
 }

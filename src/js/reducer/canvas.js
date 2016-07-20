@@ -10,22 +10,29 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD:
       return [...action.payload.canvas];
+
     case ADD_CIRCLE:
-      return state.concat([{ x: 0, y: 1, r: 10 }]);
+      return state.concat([{ x: 0, y: 0, r: 250 }]);
+
     case UPDATE_CIRCLE:
       return state.map((item, i) => action.index === i ?
         Object.assign({}, item, { [action.field]: +action.val }) :
         item
       );
+
     case DELETE_CIRCLE:
       return state.filter((_, i) => i !== +action.index);
+
     default:
       return state;
   }
 }
 
-export const addCircle = () => dispatch => () => dispatch({ type: ADD_CIRCLE });
-export const deleteCircle = index => dispatch => () => dispatch({ type: DELETE_CIRCLE, index });
-export const updateCircle = (index, field) => dispatch => event => dispatch(
-  { type: UPDATE_CIRCLE, index, field, val: event.target.value }
-);
+export const addCircleAction = () => ({ type: ADD_CIRCLE });
+export const addCircle = () => dispatch => () => dispatch(addCircleAction());
+
+export const updateCircleAction = (index, field, val) => ({ type: UPDATE_CIRCLE, index, field, val });
+export const updateCircle = (index, field) => dispatch => event => dispatch(updateCircleAction(index, field, event.target.value));
+
+export const deleteCircleAction = index => ({ type: DELETE_CIRCLE, index });
+export const deleteCircle = index => dispatch => () => dispatch(deleteCircleAction(index));
