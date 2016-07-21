@@ -1,0 +1,83 @@
+/* Hide controls on print */
+@media print {
+  .canvas-control {
+    display: none; } }
+
+.canvas-control {
+  width: 275px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  border: 1px solid #4c6c88;
+  font-size: 12px;
+  border-radius: 5px; }
+
+.canvas-control h3 {
+  color: #fff;
+  background-color: #4c6c88;
+  margin: 0;
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: bolder; }
+
+.canvas-control p {
+  margin: 5px;
+  font-size: 13px;
+  font-weight: bold; }
+
+.canvas-control ul {
+  padding-left: 20px;
+  padding-right: 5px; }
+
+.red {
+  color: red;
+  font-weight: bold; }
+
+.reactive-canvas svg {
+  background-color: #428bca; }
+
+.reactive-canvas .canvas-circle {
+  fill: #fff; }
+
+/* Invert canvas/circles color on print */
+@media print {
+  .reactive-canvas svg {
+    background-color: #fff; }
+  .reactive-canvas .canvas-circle {
+    fill: #428bca; } }
+
+.circle-list {
+  margin: 10px; }
+
+.circle-list > div {
+  margin-bottom: 3px; }
+
+.circle-list label {
+  text-align: center; }
+
+.circle-list input,
+.circle-list label,
+.circle-list .read-only {
+  width: 50px;
+  margin-right: 5px; }
+
+.circle-list button {
+  width: 40px; }
+
+.circle-list .read-only {
+  width: 25px !important;
+  text-align: center;
+  display: inline-block; }
+
+.circle-list > div.first {
+  border-bottom: 1px solid #000; }
+
+body {
+  margin: 0;
+  overflow: hidden; }
+
+#root {
+  width: 100%; }
+
+/*# sourceMappingURL=reactive-canvas.css.map */
