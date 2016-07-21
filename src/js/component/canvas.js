@@ -1,9 +1,14 @@
+//This library will provide a fake DOM for D3 to operate on.
+//This is good because React is the 'DOM owner', we should delegate to it all
+//changes, so it keep up the good work ^^
+//PS: SVG images are just like regular DOM, pretty cool uh?!
 import ReactFauxDOM from 'react-faux-dom';
 
 //@TODO: Find a less hacky way to import D3
 //import d3 from 'd3'; - Why this don't work?
 const d3 = window.d3;
 
+//@TODO: This implementation is very naive. Improve it.
 export default ({circles, viewport}) => {
   const node = ReactFauxDOM.createElement('svg');
 

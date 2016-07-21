@@ -2,17 +2,17 @@
   background-color: $primary;
 }
 
-.canvas-circle {
+.reactive-canvas .canvas-circle {
   fill: $secondary;
 }
 
-
+/* Invert canvas/circles color on print */
 @media print {
   .reactive-canvas svg {
     background-color: $secondary;
   }
 
-  .canvas-circle {
+  .reactive-canvas .canvas-circle {
     fill: $primary;
   }
 }

@@ -3,13 +3,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as CanvasActions from '../reducer/canvas';
-import * as ViewportActions from '../reducer/viewport';
-import viewportReducer from '../reducer/viewport';
+import viewportReducer, * as ViewportActions from '../reducer/viewport';
 
 import Main from '../component/Main';
 
 class App extends React.Component {
   handleResize() {
+    // To be on the safe side, cross-browser size checking...
     var w = window,
         d = document,
         documentElement = d.documentElement,
@@ -23,7 +23,8 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    //Wait a while for the redux store to startup
+    // Wait a while for the redux store to startup
+    //@TODO: setTimeout is always a bad sign. Find a better way to ensure store is ready.
     setTimeout(() => this.handleResize(), 500);
     window.addEventListener('resize', () => this.handleResize());
   };

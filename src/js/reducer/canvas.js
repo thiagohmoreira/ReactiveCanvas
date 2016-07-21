@@ -1,12 +1,19 @@
 import { LOAD } from 'redux-storage';
 import { canAddCircle, getMaxNewRadius, isValid } from '../api/canvas';
 
+/**
+ * Action types
+ */
 export const ADD_CIRCLE = 'CANVAS/ADD_CIRCLE';
 export const UPDATE_CIRCLE = 'CANVAS/UPDATE_CIRCLE';
 export const DELETE_CIRCLE = 'CANVAS/DELETE_CIRCLE';
 
+// Initial state
 export const initialState = [];
 
+/**
+ * Reducer function
+ */
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD:
@@ -29,7 +36,20 @@ export default function reducer(state = initialState, action) {
   }
 }
 
+/**
+ * Action creators
+ *
+ * PS: Exporting these functions to facilitate testing.
+ * @TODO: This is also an issue, cause it allows external code to 'bypass' business logic
+ *        from action dispachers. Find a better solution (in Java we use package scope)
+ */
 export const addCircleAction = (circle) => ({ type: ADD_CIRCLE, circle });
+export const updateCircleAction = (index, field, val) => ({ type: UPDATE_CIRCLE, index, field, val });
+export const deleteCircleAction = index => ({ type: DELETE_CIRCLE, index });
+
+/**
+ * Action dispachers
+ */
 export const addCircle = (circle) => (dispatch, getState) => () => {
   const { canvas, viewport } = getState();
 
@@ -47,7 +67,6 @@ export const addCircle = (circle) => (dispatch, getState) => () => {
   }
 };
 
-export const updateCircleAction = (index, field, val) => ({ type: UPDATE_CIRCLE, index, field, val });
 export const updateCircle = (index, field) => (dispatch, getState) => event => {
   const { canvas, viewport } = getState();
   const { value } = event.target;
@@ -65,5 +84,4 @@ export const updateCircle = (index, field) => (dispatch, getState) => event => {
   }
 };
 
-export const deleteCircleAction = index => ({ type: DELETE_CIRCLE, index });
 export const deleteCircle = index => dispatch => () => dispatch(deleteCircleAction(index));
