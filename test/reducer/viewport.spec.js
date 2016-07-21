@@ -1,8 +1,8 @@
-jest.unmock('../../src/js/reducer/viewport');
-
  //This is to help ensuring reducers are pure functions
 import deepFreeze from 'deep-freeze';
 
+//Get the real implementation
+jest.unmock('../../src/js/reducer/viewport');
 import viewportReducer, { initialState, updateSizeAction } from '../../src/js/reducer/viewport';
 
 describe('The viewport reducer', function() {

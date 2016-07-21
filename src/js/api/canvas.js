@@ -1,31 +1,51 @@
+import { checkCircle } from './circle';
+
 /**
- * Action types
+ * Constant values
  *
  * PS: Exporting these constants to facilitate testing (avoid hardcoding).
  */
-export const ERROR_INVALID_RADIUS = 'Radius must be bigger then zero.';
-export const ERROR_RADIUS_TOO_BIG = 'Radius value is too big.';
 export const MAX_CIRCLES = 5;
+export const ERROR_MAX_CIRCLES = 'Maximun number of circles reached.';
+export const ERROR_RADIUS_TOO_BIG = 'Circle radius is too big.';
 
 /**
- * Helper functions
+ * Canvas API
  */
-export const canAddCircle = (canvas) => canvas.length < MAX_CIRCLES;
 export const getCirclesLeft = (canvas) => MAX_CIRCLES - canvas.length;
 
-export const getMaxNewRadius = (canvas, viewportWidth) => {
-  var maxRadius = viewportWidth;
-  canvas.forEach(circle => { maxRadius -= 2 * circle.r; });
+export const canAddCircle = (canvas) => getCirclesLeft(canvas) > 0;
 
-  return maxRadius < 0 ? 0 : maxRadius / 2;
+export const getDiameterSum = (canvas) => {
+  var sum = 0;
+  canvas.forEach(circle => { sum += circle.r; });
+
+  //Diameter = 2 * Radius =)
+  return 2 * sum;
+}
+
+export const getMaxNewRadius = (canvas, viewportWidth) => {
+  const maxRadius = Math.floor((viewportWidth - getDiameterSum(canvas)) / 2);
+  return maxRadius < 0 ? 0 : maxRadius;
 };
 
-export const isValid = (circle, canvas, viewportWidth) => {
-  if (circle.r < 1)
-    return ERROR_INVALID_RADIUS;
+export const checkValidAdd = (circle, canvas, viewportWidth) => {
+  checkCircle(circle);
+
+  if (!canAddCircle(canvas))
+    throw ERROR_MAX_CIRCLES;
 
   if (circle.r > getMaxNewRadius(canvas, viewportWidth))
-    return ERROR_RADIUS_TOO_BIG;
+    throw ERROR_RADIUS_TOO_BIG;
+
+  return true;
+}
+
+export const checkValidUpdate = (index, circle, canvas, viewportWidth) => {
+  checkCircle(circle);
+
+  if (circle.r > getMaxNewRadius(canvas, viewportWidth) + canvas[index].r)
+    throw ERROR_RADIUS_TOO_BIG;
 
   return true;
 };

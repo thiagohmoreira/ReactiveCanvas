@@ -1,66 +1,54 @@
+//Get the real implementation
 jest.unmock('../../src/js/api/canvas');
-
- //This is to help ensuring reducers are pure functions
-import deepFreeze from 'deep-freeze';
-
 import * as CanvasApi from '../../src/js/api/canvas';
 
 describe('The canvas api', function() {
-  it('allow circle insertion when there is less then 5 circles already there', () => {
+  it('allow circle insertion up to MAX_CIRCLES', () => {
+    const circle = { x: 0, y: 0, r: 1 };
     const canvas = [];
-
-    expect(
-      CanvasApi.canAddCircle(canvas)
-    ).toBe(true);
-
-    canvas.push(1, 2, 3, 4);
-
-    expect(
-      CanvasApi.canAddCircle(canvas)
-    ).toBe(true);
-  });
-
-  it('disallow circle insertion when there is 5 or more circles', () => {
-    const canvas = [1, 2, 3, 4, 5];
-
-    expect(
-      CanvasApi.canAddCircle(canvas)
-    ).toBe(false);
-
-    canvas.push(6);
-
-    expect(
-      CanvasApi.canAddCircle(canvas)
-    ).toBe(false);
-  });
-
-  it('disallow circle with radius less then 1', () => {
-    const circle = { x: 0, y: 0, r: 0};
-    const canvas = [{ x: 0, y: 0, r: 1}];
     const viewportWidth = 100;
 
-    expect(
-      CanvasApi.isValid(circle, canvas, viewportWidth)
-    ).toEqual(CanvasApi.ERROR_INVALID_RADIUS);
+    //Empty canvas
+    expect(CanvasApi.checkValidAdd(circle, canvas, viewportWidth))
+      .toBe(true);
+
+    //Only one left
+    for (var i = 0; i < CanvasApi.MAX_CIRCLES - 1; i++)
+      canvas.push(circle);
+    expect(CanvasApi.checkValidAdd(circle, canvas, viewportWidth))
+      .toBe(true);
+
+    //No more space
+    canvas.push(circle);
+    expect(() => CanvasApi.checkValidAdd(circle, canvas, viewportWidth))
+      .toThrow(CanvasApi.ERROR_MAX_CIRCLES);
   });
 
-  it('disallow circle when the radius sum is bigger then viewport width', () => {
-    const circle = { x: 0, y: 0, r: 100};
-    const canvas = [{ x: 0, y: 0, r: 1}];
+  it('allow circle insertion until the diameter sum is less or equal to the viewport width', () => {
+    const circle = { x: 0, y: 0, r: 1 };
+    const canvas = [{ x: 0, y: 0, r: 49 }];
     const viewportWidth = 100;
 
-    expect(
-      CanvasApi.isValid(circle, canvas, viewportWidth)
-    ).toEqual(CanvasApi.ERROR_RADIUS_TOO_BIG);
+    expect(CanvasApi.checkValidAdd(circle, canvas, viewportWidth))
+      .toBe(true);
+
+    //No more space
+    canvas.push(circle);
+    expect(() => CanvasApi.checkValidAdd(circle, canvas, viewportWidth))
+      .toThrow(CanvasApi.ERROR_RADIUS_TOO_BIG);
   });
 
-  it('allow circle with radius between 1 and radius sum less then viewport width', () => {
-    const circle = { x: 0, y: 0, r: 99};
-    const canvas = [{ x: 0, y: 0, r: 1}];
-    const viewportWidth = 200; //Diameter = 2 * radius!
+  it('allow circle update until the diameter sum is less or equal to the viewport width', () => {
+    const index = 0;
+    const ValidCircle = { x: 0, y: 0, r: 48 };
+    const invalidCircle = { x: 0, y: 0, r: 50 };
+    const canvas = [{ x: 0, y: 0, r: 49 }, { x: 0, y: 0, r: 1 }];
+    const viewportWidth = 100;
 
-    expect(
-      CanvasApi.isValid(circle, canvas, viewportWidth)
-    ).toBe(true);
+    expect(CanvasApi.checkValidUpdate(index, ValidCircle, canvas, viewportWidth))
+      .toBe(true);
+
+    expect(() => CanvasApi.checkValidUpdate(index, invalidCircle, canvas, viewportWidth))
+      .toThrow(CanvasApi.ERROR_RADIUS_TOO_BIG);
   });
 });

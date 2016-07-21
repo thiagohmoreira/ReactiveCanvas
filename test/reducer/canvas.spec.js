@@ -1,8 +1,8 @@
-jest.unmock('../../src/js/reducer/canvas');
-
  //This is to help ensuring reducers are pure functions
 import deepFreeze from 'deep-freeze';
 
+//Get the real implementation
+jest.unmock('../../src/js/reducer/canvas');
 import canvasReducer, { initialState, addCircleAction, updateCircleAction, deleteCircleAction } from '../../src/js/reducer/canvas';
 
 describe('The canvas reducer', function() {

@@ -1,5 +1,5 @@
 import { LOAD } from 'redux-storage';
-import { canAddCircle, getMaxNewRadius, isValid } from '../api/canvas';
+import { checkValidAdd, checkValidUpdate } from '../api/canvas';
 
 /**
  * Action types
@@ -51,35 +51,29 @@ export const deleteCircleAction = index => ({ type: DELETE_CIRCLE, index });
  * Action dispachers
  */
 export const addCircle = (circle) => (dispatch, getState) => () => {
-  const { canvas, viewport } = getState();
-
   try {
-    if (!canAddCircle(canvas))
-      throw 'Max number of circles reached.';
+    const { canvas, viewport } = getState();
 
-    const validCircle = isValid(circle, canvas, viewport.width);
-    if (validCircle !== true)
-      throw validCircle;
+    checkValidAdd(circle, canvas, viewport.width);
 
     dispatch(addCircleAction(circle));
   } catch (err) {
+    //@TODO: Implement better error handling
     console.log(err);
   }
 };
 
 export const updateCircle = (index, field) => (dispatch, getState) => event => {
-  const { canvas, viewport } = getState();
-  const { value } = event.target;
-
   try {
-    if (field == 'r') {
-      const validCircle = isValid(canvas[index], canvas, viewport.width);
-      if (validCircle !== true)
-        throw validCircle;
-    }
+    const { canvas, viewport } = getState();
+    const { value } = event.target;
+    const circle = Object.assign({}, canvas[index], { [field]: value });
+
+    checkValidUpdate(index, circle, canvas, viewport.width);
 
     dispatch(updateCircleAction(index, field, value));
   } catch (err) {
+    //@TODO: Implement better error handling
     console.log(err);
   }
 };
