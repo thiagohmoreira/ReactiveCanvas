@@ -15,13 +15,15 @@ And some features:
  - The printed version of the page have inverted colors
    (color of the background become circle color and vice versa)!
 
-### Requirements
+See it in action: https://thiagohmoreira.github.io/ReactiveCanvas/
+
+## Requirements (DEV)
 
 - Node.js
 - NPM
 - Browser ;)
 
-### Running
+## Running
 
 ```sh
 npm install   # Installs dependencies
@@ -34,7 +36,7 @@ gulp watch    # Watch sources and rebuilds
               # the application on the fly
 ```
 
-### Bugs? Can be done better?
+## Bugs? Can be done better? Liked it?
 
 Open an issue, a discussion, do a smoke signal... I'm keen hear about it ;)
 
