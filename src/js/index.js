@@ -1,5 +1,5 @@
 // Makes sure all Babel ES6 wizardry is available
-import "babel-polyfill";
+import 'babel-polyfill';
 
 import React from 'react';
 import { render } from 'react-dom';

@@ -16,23 +16,23 @@ export const initialState = [];
  */
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD:
-      return [...action.payload.canvas];
+  case LOAD:
+    return [...action.payload.canvas];
 
-    case ADD_CIRCLE:
-      return state.concat([action.circle]);
+  case ADD_CIRCLE:
+    return state.concat([action.circle]);
 
-    case UPDATE_CIRCLE:
-      return state.map((item, i) => action.index === i ?
-        Object.assign({}, item, { [action.field]: +action.val }) :
-        item
-      );
+  case UPDATE_CIRCLE:
+    return state.map((item, i) => action.index === i ?
+      Object.assign({}, item, { [action.field]: +action.val }) :
+      item
+    );
 
-    case DELETE_CIRCLE:
-      return state.filter((_, i) => i !== +action.index);
+  case DELETE_CIRCLE:
+    return state.filter((_, i) => i !== +action.index);
 
-    default:
-      return state;
+  default:
+    return state;
   }
 }
 

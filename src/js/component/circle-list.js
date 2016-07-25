@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { canAddCircle, getMaxNewRadius } from '../api/canvas';
 
-export default ({ actions, circles, viewport }) => {
+export default function CircleList({ circles, viewport, actions }) {
   const maxRadius = getMaxNewRadius(circles, viewport.width);
   var newCircle = { x: 0, y: 0, r: (maxRadius > 50 ? 50 : maxRadius) };
 
@@ -28,3 +28,11 @@ export default ({ actions, circles, viewport }) => {
     </div>
   );
 }
+
+//Property validation
+CircleList.displayName = 'CircleList';
+CircleList.propTypes = {
+  circles: React.PropTypes.array.isRequired,
+  viewport: React.PropTypes.object.isRequired,
+  actions: React.PropTypes.object.isRequired
+};

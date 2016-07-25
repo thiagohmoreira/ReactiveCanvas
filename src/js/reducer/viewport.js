@@ -13,14 +13,14 @@ export const initialState = { width: 0, height: 0 };
  */
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD:
-      return { ...initialState };
+  case LOAD:
+    return { ...initialState };
 
-    case UPDATE_SIZE:
-      return { width: action.width, height: action.height };
+  case UPDATE_SIZE:
+    return { width: action.width, height: action.height };
 
-    default:
-      return state;
+  default:
+    return state;
   }
 }
 

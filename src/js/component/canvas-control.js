@@ -3,7 +3,7 @@ import React from 'react';
 import CircleList from '../component/circle-list';
 import { MAX_CIRCLES, getCirclesLeft, getMaxNewRadius } from '../api/canvas';
 
-export default ({ circles, viewport, actions }) => {
+export default function CanvasControl({ circles, viewport, actions }) {
   const circlesLeft = getCirclesLeft(circles);
   const radiusLeft = getMaxNewRadius(circles, viewport.width);
 
@@ -22,3 +22,11 @@ export default ({ circles, viewport, actions }) => {
     </div>
   );
 }
+
+//Property validation
+CanvasControl.displayName = 'CanvasControl';
+CanvasControl.propTypes = {
+  circles: React.PropTypes.array.isRequired,
+  viewport: React.PropTypes.object.isRequired,
+  actions: React.PropTypes.object.isRequired
+};

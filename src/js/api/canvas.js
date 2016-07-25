@@ -22,7 +22,7 @@ export const getDiameterSum = (canvas) => {
 
   //Diameter = 2 * Radius =)
   return 2 * sum;
-}
+};
 
 export const getMaxNewRadius = (canvas, viewportWidth) => {
   const maxRadius = Math.floor((viewportWidth - getDiameterSum(canvas)) / 2);
@@ -39,7 +39,7 @@ export const checkValidAdd = (circle, canvas, viewportWidth) => {
     throw ERROR_RADIUS_TOO_BIG;
 
   return true;
-}
+};
 
 export const checkValidUpdate = (index, circle, canvas, viewportWidth) => {
   checkCircle(circle);
