@@ -1,5 +1,4 @@
 import browserSync from 'browser-sync';
-import babelify from 'babelify';
 import browserify from 'browserify';
 import gulp from 'gulp';
 import gutil from 'gulp-util';
@@ -16,32 +15,31 @@ var paths = {
 };
 
 for (var entryFile of config.tasks.js.entries.app) {
-    paths.entries.push(
-        path.join(config.root.src, config.tasks.js.src, entryFile)
-    );
+  paths.entries.push(
+    path.join(config.root.src, config.tasks.js.src, entryFile)
+  );
 }
 
 var jsTask = () => {
-    return browserify(Object.assign(
-            { entries: paths.entries },
-            config.tasks.js.browserify
-        ))
-        //.transform(babelify)
-        .bundle()
+  return browserify(Object.assign(
+      { entries: paths.entries },
+      config.tasks.js.browserify
+    ))
+    .bundle()
 
-        .on('log', gutil.log)
-        .on('error', handleErrors)
+    .on('log', gutil.log)
+    .on('error', handleErrors)
 
-        .pipe(source(config.root.outputFileName + '.js'))
-        .pipe(buffer())
+    .pipe(source(config.root.outputFileName + '.js'))
+    .pipe(buffer())
 
-        //Source Maps
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(sourcemaps.write('./'))
+    //Source Maps
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(sourcemaps.write('./'))
 
-        //Output
-        .pipe(gulp.dest(paths.dest))
-        .pipe(browserSync.stream());
+    //Output
+    .pipe(gulp.dest(paths.dest))
+    .pipe(browserSync.stream());
 };
 
 gulp.task('js', jsTask);

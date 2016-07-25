@@ -3,7 +3,7 @@ import gulp from 'gulp';
 import config from '../config';
 
 let task = () => {
-    browserSync.init(config.tasks.browserSync);
+  browserSync.init(config.tasks.browserSync);
 };
 
 gulp.task('browser-sync', task);
