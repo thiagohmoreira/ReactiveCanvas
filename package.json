@@ -5,7 +5,12 @@
   "description": "A demo application with React, Redux and D3",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "gulp lint",
+    "clean": "gulp clean",
+    "build": "gulp build",
+    "clean-build": "gulp clean-build",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
