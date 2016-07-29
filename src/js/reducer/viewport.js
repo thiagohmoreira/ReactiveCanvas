@@ -1,4 +1,5 @@
 import { LOAD } from 'redux-storage';
+import { getViewportSize } from '../api/viewport';
 
 /**
  * Action types
@@ -6,7 +7,7 @@ import { LOAD } from 'redux-storage';
 export const UPDATE_SIZE = 'VIEWPORT/UPDATE_SIZE';
 
 // Initial state
-export const initialState = { width: 0, height: 0 };
+export const initialState = getViewportSize();
 
 /**
  * Reducer function

@@ -9,14 +9,14 @@ import ReactFauxDOM from 'react-faux-dom';
 const d3 = window.d3;
 
 //@TODO: This implementation is very naive. Improve it.
-export default ({circles, viewport}) => {
+export default ({canvas, viewport}) => {
   const node = ReactFauxDOM.createElement('svg');
 
   const svg = d3.select(node)
     .attr('width', viewport.width)
     .attr('height', viewport.height);
 
-  circles.map((circle, i) => {
+  canvas.map((circle, i) => {
     svg.append('circle')
       .attr('class', 'canvas-circle')
       .attr('id', i)

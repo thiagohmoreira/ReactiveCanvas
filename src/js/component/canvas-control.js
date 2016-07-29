@@ -3,9 +3,9 @@ import React from 'react';
 import CircleList from '../component/circle-list';
 import { MAX_CIRCLES, getCirclesLeft, getMaxNewRadius } from '../api/canvas';
 
-export default function CanvasControl({ circles, viewport, actions }) {
-  const circlesLeft = getCirclesLeft(circles);
-  const radiusLeft = getMaxNewRadius(circles, viewport.width);
+export default function CanvasControl({ canvas, viewport, actions }) {
+  const circlesLeft = getCirclesLeft(canvas);
+  const radiusLeft = getMaxNewRadius(canvas, viewport.width);
 
   return (
     <div className='canvas-control'>
@@ -18,7 +18,7 @@ export default function CanvasControl({ circles, viewport, actions }) {
             the viewport width (<span className={radiusLeft ? null : 'red' }>{radiusLeft} radius left</span>)
         </li>
       </ul>
-      <CircleList circles={circles} viewport={viewport} actions={actions} />
+      <CircleList canvas={canvas} viewport={viewport} actions={actions} />
     </div>
   );
 }
@@ -26,7 +26,7 @@ export default function CanvasControl({ circles, viewport, actions }) {
 //Property validation
 CanvasControl.displayName = 'CanvasControl';
 CanvasControl.propTypes = {
-  circles: React.PropTypes.array.isRequired,
+  canvas: React.PropTypes.array.isRequired,
   viewport: React.PropTypes.object.isRequired,
   actions: React.PropTypes.object.isRequired
 };

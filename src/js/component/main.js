@@ -4,11 +4,11 @@ import Layout from '../layout/main';
 import Canvas from '../component/canvas';
 import CanvasControl from '../component/canvas-control';
 
-export default function Main({ circles, viewport, actions }) {
+export default function Main({ canvas, viewport, actions }) {
   return (
     <Layout>
-      <Canvas circles={circles} viewport={viewport} />
-      <CanvasControl circles={circles} viewport={viewport} actions={actions} />
+      <Canvas canvas={canvas} viewport={viewport} />
+      <CanvasControl canvas={canvas} viewport={viewport} actions={actions} />
     </Layout>
   );
 }
@@ -16,7 +16,7 @@ export default function Main({ circles, viewport, actions }) {
 //Property validation
 Main.displayName = 'Main';
 Main.propTypes = {
-  circles: React.PropTypes.array.isRequired,
+  canvas: React.PropTypes.array.isRequired,
   viewport: React.PropTypes.object.isRequired,
   actions: React.PropTypes.object.isRequired
 };

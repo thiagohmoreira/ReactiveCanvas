@@ -1,8 +1,8 @@
 import React from 'react';
 import { canAddCircle, getMaxNewRadius } from '../api/canvas';
 
-export default function CircleList({ circles, viewport, actions }) {
-  const maxRadius = getMaxNewRadius(circles, viewport.width);
+export default function CircleList({ canvas, viewport, actions }) {
+  const maxRadius = getMaxNewRadius(canvas, viewport.width);
   var newCircle = { x: 0, y: 0, r: (maxRadius > 50 ? 50 : maxRadius) };
 
   return (
@@ -14,9 +14,9 @@ export default function CircleList({ circles, viewport, actions }) {
           <label>Radius</label>
           <button className='btn btn-xs'
             onClick={actions.addCircle(newCircle)}
-            disabled={!canAddCircle(circles) || maxRadius < 1}>New</button>
+            disabled={!canAddCircle(canvas) || maxRadius < 1}>New</button>
       </div>
-      {circles.map(({ x, y, r }, i) => (
+      {canvas.map(({ x, y, r }, i) => (
         <div key={i}>
           <span className='read-only'>{i + 1}</span>
           <input type='number' min='0' max={viewport.width} value={x} onChange={actions.updateCircle(i, 'x')} />
@@ -32,7 +32,7 @@ export default function CircleList({ circles, viewport, actions }) {
 //Property validation
 CircleList.displayName = 'CircleList';
 CircleList.propTypes = {
-  circles: React.PropTypes.array.isRequired,
+  canvas: React.PropTypes.array.isRequired,
   viewport: React.PropTypes.object.isRequired,
   actions: React.PropTypes.object.isRequired
 };
