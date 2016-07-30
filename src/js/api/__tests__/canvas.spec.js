@@ -1,6 +1,6 @@
 //Get the real implementation
-jest.unmock('../../src/js/api/canvas');
-import * as CanvasApi from '../../src/js/api/canvas';
+jest.unmock('../canvas');
+import * as CanvasApi from '../canvas';
 
 describe('The canvas api', function() {
   it('allow circle insertion up to MAX_CIRCLES', () => {

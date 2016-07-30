@@ -1,6 +1,6 @@
 //Get the real implementation
-jest.unmock('../../src/js/api/circle');
-import * as CircleApi from '../../src/js/api/circle';
+jest.unmock('../circle');
+import * as CircleApi from '../circle';
 
 describe('The circle api', function() {
   it('accept only circles with coordinates equal or greater than zero', () => {

@@ -1,6 +1,5 @@
 {
   "root": {
-    "test": "./test",
     "src": "./src",
     "dest": "./build",
 

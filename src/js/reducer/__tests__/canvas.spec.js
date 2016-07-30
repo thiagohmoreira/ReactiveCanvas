@@ -2,8 +2,8 @@
 import deepFreeze from 'deep-freeze';
 
 //Get the real implementation
-jest.unmock('../../src/js/reducer/canvas');
-import canvasReducer, { initialState, addCircleAction, updateCircleAction, deleteCircleAction } from '../../src/js/reducer/canvas';
+jest.unmock('../canvas');
+import canvasReducer, { initialState, addCircleAction, updateCircleAction, deleteCircleAction } from '../canvas';
 
 describe('The canvas reducer', function() {
   it('return a clean initial state', () => {

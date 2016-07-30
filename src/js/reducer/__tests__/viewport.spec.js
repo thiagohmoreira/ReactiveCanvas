@@ -2,8 +2,9 @@
 import deepFreeze from 'deep-freeze';
 
 //Get the real implementation
-jest.unmock('../../src/js/reducer/viewport');
-import viewportReducer, { initialState, updateSizeAction } from '../../src/js/reducer/viewport';
+jest.unmock('../../api/viewport');
+jest.unmock('../viewport');
+import viewportReducer, { initialState, updateSizeAction } from '../viewport';
 
 describe('The viewport reducer', function() {
   it('return a clean initial state', () => {
