@@ -4,17 +4,17 @@ import inject from 'gulp-inject';
 import path from 'path';
 import config from '../config';
 
-var paths = {
+const paths = {
   src: path.join(config.root.src, config.tasks.html.src, config.tasks.html.entry),
   dest: config.root.dest,
   injectionSrc: path.join(config.root.dest, '/**/*.{' + config.tasks.html.injectExtensions + '}'),
   ignorePath: path.normalize(config.root.dest)
 };
 
-var htmlTask = () => {
-  var sources = gulp.src([paths.injectionSrc], { read: false });
+const task = () => {
+  let sources = gulp.src([paths.injectionSrc], { read: false });
 
-  var injectOptions = {
+  let injectOptions = {
     ignorePath: [paths.ignorePath],
     addRootSlash: false,
     removeTags: true
@@ -26,6 +26,6 @@ var htmlTask = () => {
     .pipe(browserSync.stream());
 };
 
-gulp.task('html', htmlTask);
+gulp.task('html', task);
 
-export default htmlTask;
+export default task;

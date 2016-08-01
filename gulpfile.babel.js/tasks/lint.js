@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import eslint from 'gulp-eslint';
 import config from '../config';
 
-const lintTask = () => 
+const task = () =>
   gulp.src([
     config.root.src + '/**/*.{' + config.tasks.js.extensions + '}',
     '!node_modules/**'
@@ -13,6 +13,6 @@ const lintTask = () =>
   // lint error, return the stream and pipe to failAfterError last.
   //.pipe(eslint.failAfterError());
 
-gulp.task('lint', lintTask);
+gulp.task('lint', task);
 
-export default lintTask;
+export default task;

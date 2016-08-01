@@ -3,11 +3,11 @@ import clean from 'gulp-clean';
 import handleErrors from '../lib/handleErrors';
 import config from '../config';
 
-var cleanTask = () =>
+const task = () =>
   gulp.src([config.root.dest], { read: false })
     .pipe(clean())
     .on('error', handleErrors);
 
-gulp.task('clean', cleanTask);
+gulp.task('clean', task);
 
-export default cleanTask;
+export default task;

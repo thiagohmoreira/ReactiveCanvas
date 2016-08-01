@@ -9,19 +9,19 @@ import browserSync from 'browser-sync';
 import handleErrors from '../lib/handleErrors';
 import config from '../config';
 
-var paths = {
+const paths = {
   src: path.join(config.root.src, config.tasks.css.src, '/**/*.{' + config.tasks.css.extensions + '}'),
   entry: path.join(config.root.src, config.tasks.css.src, config.tasks.css.entry),
   dest: path.join(config.root.dest, config.tasks.css.dest)
 };
 
-var cssTask = () => {
-  var injectAppFiles = gulp.src([
+const task = () => {
+  let injectAppFiles = gulp.src([
     paths.src,
     '!' + paths.entry
   ], {read: false});
 
-  var injectAppOptions = {
+  let injectAppOptions = {
     transform: function(filepath) {
       return '@import "' + filepath + '"';
     },
@@ -43,6 +43,6 @@ var cssTask = () => {
     .pipe(browserSync.stream());
 };
 
-gulp.task('css', cssTask);
+gulp.task('css', task);
 
-export default cssTask;
+export default task;

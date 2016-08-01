@@ -1,10 +1,10 @@
 import gulp from 'gulp';
 import gulpSequence from 'gulp-sequence';
 
-var buildTask = (cb) => {
-  gulpSequence(['css', 'lint', 'js'], 'html', cb);
+const task = (cb) => {
+  gulpSequence(['css', 'js'], 'html', cb);
 };
 
-gulp.task('build', buildTask);
+gulp.task('build', task);
 
-export default buildTask;
+export default task;

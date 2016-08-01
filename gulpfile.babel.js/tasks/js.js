@@ -9,18 +9,18 @@ import path from 'path';
 import handleErrors from '../lib/handleErrors';
 import config from '../config';
 
-var paths = {
+const paths = {
   entries: [],
   dest: path.join(config.root.dest, config.tasks.js.dest)
 };
 
-for (var entryFile of config.tasks.js.entries.app) {
+for (let entryFile of config.tasks.js.entries.app) {
   paths.entries.push(
     path.join(config.root.src, config.tasks.js.src, entryFile)
   );
 }
 
-var jsTask = () => {
+const task = () => {
   return browserify(Object.assign(
       { entries: paths.entries },
       config.tasks.js.browserify
@@ -42,6 +42,6 @@ var jsTask = () => {
     .pipe(browserSync.stream());
 };
 
-gulp.task('js', jsTask);
+gulp.task('js', task);
 
-export default jsTask;
+export default task;
